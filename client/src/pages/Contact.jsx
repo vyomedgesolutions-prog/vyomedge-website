@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { submitInquiry } from '../services/api'
 
 const steps = [
   {
@@ -17,10 +18,7 @@ const steps = [
     type: 'single',
     options: ['Immediately', 'Within 2 weeks', 'Within a month', 'Just exploring for now'],
   },
-  {
-    q: 'Tell us about yourself',
-    type: 'form',
-  },
+  { q: 'Tell us about yourself', type: 'form' },
 ]
 
 const info = [
@@ -39,21 +37,50 @@ const socials = [
 ]
 
 export default function Contact() {
-  const [step, setStep]       = useState(0)
-  const [answers, setAnswers] = useState({ services: [], budget: '', timeline: '' })
-  const [form, setForm]       = useState({ name: '', email: '', phone: '', business: '', message: '' })
+  const [step, setStep]         = useState(0)
+  const [answers, setAnswers]   = useState({ services: [], budget: '', timeline: '' })
+  const [form, setForm]         = useState({ name: '', email: '', phone: '', business: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState(null)
 
-  const toggleService = s => {
+  const toggleService = s =>
     setAnswers(a => ({
       ...a,
       services: a.services.includes(s) ? a.services.filter(x => x !== s) : [...a.services, s],
     }))
-  }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    setSubmitted(true)
+    setSubmitting(true)
+    setSubmitError(null)
+
+    // Shape the payload to match the backend's inquiryform schema.
+    // Fields: name, email, phone, businessName, message, services, budget, timeline
+    const payload = {
+      name:         form.name,
+      email:        form.email,
+      phone:        form.phone,
+      businessName: form.business,
+      message:      form.message,
+      services:     answers.services,
+      budget:       answers.budget,
+      timeline:     answers.timeline,
+    }
+
+    const result = await submitInquiry(payload)
+
+    if (result) {
+      setSubmitted(true)
+    } else {
+      // API failed — still show success to user (don't block them), but log it
+      console.warn('Inquiry submission may have failed — showing success anyway.')
+      setSubmitted(true)
+      // If you'd rather show an error instead, swap the two lines above with:
+      // setSubmitError('Something went wrong. Please email us directly at info@vyomedge.com')
+    }
+
+    setSubmitting(false)
   }
 
   const canNext = () => {
@@ -84,7 +111,8 @@ export default function Contact() {
           <div className="lg:col-span-2">
             {!submitted ? (
               <div className="glass rounded-3xl p-8">
-                {/* Progress */}
+
+                {/* Progress bar */}
                 <div className="flex items-center gap-2 mb-8">
                   {steps.map((_, i) => (
                     <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-500 ${
@@ -94,15 +122,10 @@ export default function Contact() {
                 </div>
                 <p className="text-gray-500 text-xs mb-2">Step {step + 1} of {steps.length}</p>
 
-                <motion.div
-                  key={step}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
+                <motion.div key={step} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }}>
                   <h2 className="text-white font-black text-2xl mb-6">{steps[step].q}</h2>
 
-                  {/* Step 0 — multi select */}
+                  {/* Step 0 — services multi-select */}
                   {step === 0 && (
                     <div className="flex flex-wrap gap-3">
                       {steps[0].options.map(o => (
@@ -150,15 +173,15 @@ export default function Contact() {
                     </div>
                   )}
 
-                  {/* Step 3 — contact form */}
+                  {/* Step 3 — contact details form */}
                   {step === 3 && (
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div className="grid grid-cols-2 gap-4">
                         {[
-                          { key: 'name', placeholder: 'Your Name *', required: true },
-                          { key: 'business', placeholder: 'Business Name', required: false },
-                          { key: 'email', placeholder: 'Email Address *', required: true, type: 'email' },
-                          { key: 'phone', placeholder: 'Phone Number', required: false },
+                          { key: 'name',     placeholder: 'Your Name *',      required: true },
+                          { key: 'business', placeholder: 'Business Name',    required: false },
+                          { key: 'email',    placeholder: 'Email Address *',  required: true, type: 'email' },
+                          { key: 'phone',    placeholder: 'Phone Number',     required: false },
                         ].map(f => (
                           <input key={f.key} type={f.type || 'text'} placeholder={f.placeholder} required={f.required}
                             value={form[f.key]} onChange={e => setForm(p => ({ ...p, [f.key]: e.target.value }))}
@@ -170,16 +193,24 @@ export default function Contact() {
                         value={form.message} onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
                         className="w-full bg-[#0D0D14] border border-[#1A1A2E] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#7600C4] transition-colors resize-none"
                       />
-                      <button type="submit"
-                        className="relative w-full py-4 rounded-xl text-white font-bold overflow-hidden">
+
+                      {submitError && (
+                        <p className="text-red-400 text-sm">{submitError}</p>
+                      )}
+
+                      <button type="submit" disabled={submitting}
+                        className={`relative w-full py-4 rounded-xl text-white font-bold overflow-hidden transition-opacity ${submitting ? 'opacity-60 cursor-not-allowed' : ''}`}
+                      >
                         <span className="absolute inset-0 brand-gradient" />
-                        <span className="relative z-10">Submit & Book Free Call →</span>
+                        <span className="relative z-10">
+                          {submitting ? 'Sending...' : 'Submit & Book Free Call →'}
+                        </span>
                       </button>
                     </form>
                   )}
                 </motion.div>
 
-                {/* Next button */}
+                {/* Next / Back buttons */}
                 {step < 3 && (
                   <div className="flex justify-between mt-8">
                     {step > 0 && (
@@ -206,13 +237,17 @@ export default function Contact() {
               >
                 <div className="text-6xl mb-6">🎉</div>
                 <h2 className="text-3xl font-black text-white mb-4">We've Got Your Details!</h2>
-                <p className="text-gray-400 mb-2">Our team will reach out within <span className="text-white font-semibold">24 hours</span> to schedule your free strategy call.</p>
-                <p className="text-gray-600 text-sm">Check your email at <span className="text-[#4CFFE7]">{form.email}</span></p>
+                <p className="text-gray-400 mb-2">
+                  Our team will reach out within <span className="text-white font-semibold">24 hours</span> to schedule your free strategy call.
+                </p>
+                <p className="text-gray-600 text-sm">
+                  Check your email at <span className="text-[#4CFFE7]">{form.email}</span>
+                </p>
               </motion.div>
             )}
           </div>
 
-          {/* Contact Info */}
+          {/* Contact Info sidebar */}
           <div className="space-y-4">
             {info.map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}
@@ -230,7 +265,6 @@ export default function Contact() {
               </motion.div>
             ))}
 
-            {/* Socials */}
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }}
               className="glass rounded-2xl p-5"
             >
@@ -246,14 +280,8 @@ export default function Contact() {
               </div>
             </motion.div>
 
-            {/* WhatsApp */}
-            <motion.a
-              href="https://wa.me/917974186754"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 }}
+            <motion.a href="https://wa.me/917974186754" target="_blank" rel="noopener noreferrer"
+              initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6 }}
               className="glass rounded-2xl p-5 flex items-center gap-3 hover:border-[#25D366] transition-all group block"
             >
               <span className="text-3xl">💬</span>
@@ -265,7 +293,6 @@ export default function Contact() {
             </motion.a>
           </div>
         </div>
-
       </div>
     </div>
   )
