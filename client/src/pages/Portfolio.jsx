@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { getPortfolio } from '../services/api'
 
 const STATIC_FILTERS = ['All', 'Full Ecosystem', 'SEO', 'Meta Ads', 'Web Dev', 'Google Ads']
 
-// Fallback static data — shown if API returns nothing
+// Static portfolio data
 const STATIC_CASES = [
   {
     client: 'The SuperC',
@@ -84,73 +83,12 @@ const STATIC_CASES = [
   },
 ]
 
-// Normalize a portfolio item from API to match our card shape
-function normalize(item) {
-  // API may return different field names — adapt as needed once you inspect real data
-  return {
-    client:      item.clientName || item.client || 'Client',
-    url:         item.websiteUrl || item.url || '#',
-    tags:        item.tags || item.services || [],
-    icon:        item.icon || '📁',
-    color:       item.color || '#7600C4',
-    description: item.description || item.summary || '',
-    results:     Array.isArray(item.results) ? item.results : [],
-    metrics: {
-      da: item.da ?? item.metrics?.da ?? '–',
-      pa: item.pa ?? item.metrics?.pa ?? '–',
-    },
-    _id: item._id,
-  }
-}
-
-function CardSkeleton() {
-  return (
-    <div className="glass rounded-2xl p-6 animate-pulse space-y-4">
-      <div className="flex justify-between">
-        <div className="space-y-2">
-          <div className="h-4 w-20 bg-[#1A1A2E] rounded-full" />
-          <div className="h-5 w-32 bg-[#1A1A2E] rounded" />
-        </div>
-        <div className="h-10 w-10 bg-[#1A1A2E] rounded-full" />
-      </div>
-      <div className="h-3 w-full bg-[#1A1A2E] rounded" />
-      <div className="h-3 w-4/5 bg-[#1A1A2E] rounded" />
-      <div className="grid grid-cols-2 gap-3">
-        {[...Array(4)].map((_, i) => (
-          <div key={i} className="h-14 bg-[#1A1A2E] rounded-xl" />
-        ))}
-      </div>
-    </div>
-  )
-}
-
 export default function Portfolio() {
-  const [active, setActive]     = useState('All')
+  const [active, setActive] = useState('All')
   const [selected, setSelected] = useState(null)
-  const [cases, setCases]       = useState([])
-  const [loading, setLoading]   = useState(true)
-  const [error, setError]       = useState(null)
+  const cases = STATIC_CASES
 
-  useEffect(() => {
-    getPortfolio()
-      .then(data => {
-        // API may return { portfolio: [...] } or just an array — handle both
-        const items = data?.portfolio || data?.data || (Array.isArray(data) ? data : null)
-        if (items && items.length > 0) {
-          setCases(items.map(normalize))
-        } else {
-          // API returned empty — fall back to static data
-          setCases(STATIC_CASES)
-        }
-      })
-      .catch(() => {
-        setError('Could not load portfolio from server. Showing saved results.')
-        setCases(STATIC_CASES)
-      })
-      .finally(() => setLoading(false))
-  }, [])
-
-  // Build filter list from live tags + static filters merged
+  // Build filter list from tags
   const allTags = [...new Set(cases.flatMap(c => c.tags))]
   const filters = ['All', ...STATIC_FILTERS.slice(1).filter(f => allTags.includes(f)),
                    ...allTags.filter(t => !STATIC_FILTERS.includes(t))]
@@ -172,11 +110,6 @@ export default function Portfolio() {
           </p>
         </motion.div>
 
-        {/* Soft error banner */}
-        {error && (
-          <div className="text-center text-xs text-yellow-500/70 mb-6">{error}</div>
-        )}
-
         {/* Filters */}
         <div className="flex flex-wrap gap-3 justify-center mb-12">
           {filters.map(f => (
@@ -192,64 +125,58 @@ export default function Portfolio() {
         </div>
 
         {/* Grid */}
-        {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[...Array(6)].map((_, i) => <CardSkeleton key={i} />)}
-          </div>
-        ) : (
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AnimatePresence>
-              {filtered.map((c, i) => (
-                <motion.div
-                  key={c._id || c.client}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ delay: i * 0.05 }}
-                  onClick={() => setSelected(c)}
-                  className="glass rounded-2xl p-6 cursor-pointer group hover:border-[#7600C440] transition-all relative overflow-hidden"
-                >
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{ background: `radial-gradient(circle at top left, ${c.color}15, transparent 60%)` }} />
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence>
+            {filtered.map((c, i) => (
+              <motion.div
+                key={c.client}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ delay: i * 0.05 }}
+                onClick={() => setSelected(c)}
+                className="glass rounded-2xl p-6 cursor-pointer group hover:border-[#7600C440] transition-all relative overflow-hidden"
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{ background: `radial-gradient(circle at top left, ${c.color}15, transparent 60%)` }} />
 
-                  <div className="relative z-10">
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <div className="flex gap-2 mb-2 flex-wrap">
-                          {c.tags.slice(0, 2).map(t => (
-                            <span key={t} className="text-xs px-2 py-0.5 rounded-full bg-[#7600C420] text-[#4CFFE7]">{t}</span>
-                          ))}
-                        </div>
-                        <h3 className="text-white font-bold text-lg group-hover:gradient-text transition-all">{c.client}</h3>
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <div className="flex gap-2 mb-2 flex-wrap">
+                        {c.tags.slice(0, 2).map(t => (
+                          <span key={t} className="text-xs px-2 py-0.5 rounded-full bg-[#7600C420] text-[#4CFFE7]">{t}</span>
+                        ))}
                       </div>
-                      <span className="text-3xl">{c.icon}</span>
+                      <h3 className="text-white font-bold text-lg group-hover:gradient-text transition-all">{c.client}</h3>
                     </div>
-
-                    <p className="text-gray-500 text-sm mb-5 leading-relaxed line-clamp-2">{c.description}</p>
-
-                    <div className="grid grid-cols-2 gap-3">
-                      {c.results.slice(0, 4).map((r, idx) => (
-                        <div key={idx} className="bg-[#0D0D14] rounded-xl p-3">
-                          <div className="text-white font-black text-lg">{r.value}</div>
-                          <div className="text-gray-600 text-xs mt-0.5">{r.label}</div>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="mt-4 flex items-center justify-between">
-                      <div className="flex gap-3 text-xs text-gray-600">
-                        <span>DA {c.metrics.da}</span>
-                        <span>PA {c.metrics.pa}</span>
-                      </div>
-                      <span className="text-[#4CFFE7] text-xs font-medium group-hover:underline">View details →</span>
-                    </div>
+                    <span className="text-3xl">{c.icon}</span>
                   </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        )}
+
+                  <p className="text-gray-500 text-sm mb-5 leading-relaxed line-clamp-2">{c.description}</p>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    {c.results.slice(0, 4).map((r, idx) => (
+                      <div key={idx} className="bg-[#0D0D14] rounded-xl p-3">
+                        <div className="text-white font-black text-lg">{r.value}</div>
+                        <div className="text-gray-600 text-xs mt-0.5">{r.label}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-4 flex items-center justify-between">
+                    <div className="flex gap-3 text-xs text-gray-600">
+                      <span>DA {c.metrics.da}</span>
+                      <span>PA {c.metrics.pa}</span>
+                    </div>
+                    <span className="text-[#4CFFE7] text-xs font-medium group-hover:underline">View details →</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
         {/* CTA */}
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
