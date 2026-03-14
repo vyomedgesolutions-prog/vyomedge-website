@@ -44,10 +44,10 @@ export default function About() {
         {/* Hero */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-24">
           <span className="text-sm font-semibold tracking-widest uppercase gradient-text">Our Story</span>
-          <h1 className="text-5xl md:text-7xl font-black text-white mt-4 mb-6">
+          <h1 className="text-5xl md:text-7xl font-black text-t-text mt-4 mb-6">
             We Practice<br /><span className="gradient-text">What We Preach</span>
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-t-secondary text-lg max-w-2xl mx-auto leading-relaxed">
             VyomEdge is a full-stack digital growth partner based in Bhopal, India. We don't just advise — we build, market and scale real businesses with real results.
           </p>
         </motion.div>
@@ -62,7 +62,7 @@ export default function About() {
           {stats.map((s, i) => (
             <div key={i} className="glass rounded-2xl p-6 text-center">
               <div className="text-4xl font-black gradient-text mb-2">{s.value}</div>
-              <div className="text-gray-400 text-sm">{s.label}</div>
+              <div className="text-t-secondary text-sm">{s.label}</div>
             </div>
           ))}
         </motion.div>
@@ -77,10 +77,10 @@ export default function About() {
           <div className="absolute inset-0 opacity-5 brand-gradient" />
           <div className="relative z-10 max-w-3xl">
             <span className="text-sm font-semibold tracking-widest uppercase gradient-text">Our Mission</span>
-            <h2 className="text-3xl md:text-4xl font-black text-white mt-4 mb-6">
+            <h2 className="text-3xl md:text-4xl font-black text-t-text mt-4 mb-6">
               Every Indian business deserves a strong digital presence — regardless of size.
             </h2>
-            <p className="text-gray-400 leading-relaxed text-lg">
+            <p className="text-t-secondary leading-relaxed text-lg">
               Too many great businesses in India are invisible online. They have amazing products and services but no digital voice. VyomEdge exists to change that — by combining strategy, technology and marketing into one unified growth system that actually works.
             </p>
           </div>
@@ -90,7 +90,7 @@ export default function About() {
         <div className="mb-24">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
             <span className="text-sm font-semibold tracking-widest uppercase gradient-text">Our Journey</span>
-            <h2 className="text-4xl font-black text-white mt-3">From Studio to <span className="gradient-text">Growth Partner</span></h2>
+            <h2 className="text-4xl font-black text-t-text mt-3">From Studio to <span className="gradient-text">Growth Partner</span></h2>
           </motion.div>
 
           <div className="relative">
@@ -108,8 +108,8 @@ export default function About() {
                   <div className="md:w-1/2 pl-12 md:pl-0">
                     <div className="glass rounded-2xl p-6">
                       <div className="gradient-text font-black text-2xl mb-1">{t.year}</div>
-                      <h3 className="text-white font-bold text-lg mb-2">{t.title}</h3>
-                      <p className="text-gray-500 text-sm leading-relaxed">{t.desc}</p>
+                      <h3 className="text-t-text font-bold text-lg mb-2">{t.title}</h3>
+                      <p className="text-t-muted text-sm leading-relaxed">{t.desc}</p>
                     </div>
                   </div>
                   <div className="hidden md:flex md:w-1/2" />
@@ -125,7 +125,7 @@ export default function About() {
         <div className="mb-24">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
             <span className="text-sm font-semibold tracking-widest uppercase gradient-text">What Drives Us</span>
-            <h2 className="text-4xl font-black text-white mt-3">Our <span className="gradient-text">Core Values</span></h2>
+            <h2 className="text-4xl font-black text-t-text mt-3">Our <span className="gradient-text">Core Values</span></h2>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {values.map((v, i) => (
@@ -138,8 +138,8 @@ export default function About() {
                 className="glass rounded-2xl p-6 text-center hover:border-[#7600C440] transition-all"
               >
                 <div className="text-4xl mb-4">{v.icon}</div>
-                <h3 className="text-white font-bold mb-2">{v.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
+                <h3 className="text-t-text font-bold mb-2">{v.title}</h3>
+                <p className="text-t-muted text-sm leading-relaxed">{v.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -149,7 +149,7 @@ export default function About() {
         <div className="mb-24">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
             <span className="text-sm font-semibold tracking-widest uppercase gradient-text">The Team</span>
-            <h2 className="text-4xl font-black text-white mt-3">People Behind <span className="gradient-text">Your Growth</span></h2>
+            <h2 className="text-4xl font-black text-t-text mt-3">People Behind <span className="gradient-text">Your Growth</span></h2>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {team.map((m, i) => (
@@ -162,9 +162,9 @@ export default function About() {
                 className="glass rounded-2xl p-8 text-center hover:border-[#7600C440] transition-all"
               >
                 <div className="w-16 h-16 rounded-2xl brand-gradient flex items-center justify-center text-3xl mx-auto mb-4">{m.icon}</div>
-                <h3 className="text-white font-bold text-lg mb-1">{m.name}</h3>
+                <h3 className="text-t-text font-bold text-lg mb-1">{m.name}</h3>
                 <p className="text-[#4CFFE7] text-sm mb-3">{m.role}</p>
-                <p className="text-gray-500 text-sm leading-relaxed">{m.desc}</p>
+                <p className="text-t-muted text-sm leading-relaxed">{m.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -179,7 +179,7 @@ export default function About() {
         >
           <div className="text-center mb-10">
             <span className="text-sm font-semibold tracking-widest uppercase gradient-text">Trusted By</span>
-            <h2 className="text-4xl font-black text-white mt-3">Businesses We've <span className="gradient-text">Grown</span></h2>
+            <h2 className="text-4xl font-black text-t-text mt-3">Businesses We've <span className="gradient-text">Grown</span></h2>
           </div>
           <div className="flex flex-wrap gap-3 justify-center">
             {clients.map((c, i) => (
@@ -189,7 +189,7 @@ export default function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="glass px-4 py-2 rounded-full text-gray-400 text-sm hover:text-white hover:border-[#7600C440] transition-all cursor-default"
+                className="glass px-4 py-2 rounded-full text-t-secondary text-sm hover:text-t-text hover:border-[#7600C440] transition-all cursor-default"
               >
                 {c}
               </motion.span>
@@ -206,10 +206,10 @@ export default function About() {
         >
           <div className="absolute inset-0 opacity-5 brand-gradient" />
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-black text-t-text mb-4">
               Ready to Be Our Next<br /><span className="gradient-text">Success Story?</span>
             </h2>
-            <p className="text-gray-400 mb-8 max-w-md mx-auto">
+            <p className="text-t-secondary mb-8 max-w-md mx-auto">
               Join 12+ businesses who trusted VyomEdge to build and grow their digital presence.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -217,7 +217,7 @@ export default function About() {
                 <span className="absolute inset-0 brand-gradient" />
                 <span className="relative z-10">Start Your Journey →</span>
               </Link>
-              <Link to="/portfolio" className="px-8 py-4 rounded-xl border border-[#1A1A2E] text-white font-semibold hover:border-[#7600C440] transition-all">
+              <Link to="/portfolio" className="px-8 py-4 rounded-xl border border-t-border text-t-text font-semibold hover:border-[#7600C440] transition-all">
                 See Our Work
               </Link>
             </div>

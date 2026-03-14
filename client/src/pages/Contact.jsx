@@ -55,8 +55,6 @@ export default function Contact() {
     setSubmitting(true)
     setSubmitError(null)
 
-    // Shape the payload to match the backend's inquiryform schema.
-    // Fields: name, email, phone, businessName, message, services, budget, timeline
     const payload = {
       name:         form.name,
       email:        form.email,
@@ -73,11 +71,8 @@ export default function Contact() {
     if (result) {
       setSubmitted(true)
     } else {
-      // API failed — still show success to user (don't block them), but log it
       console.warn('Inquiry submission may have failed — showing success anyway.')
       setSubmitted(true)
-      // If you'd rather show an error instead, swap the two lines above with:
-      // setSubmitError('Something went wrong. Please email us directly at info@vyomedge.com')
     }
 
     setSubmitting(false)
@@ -97,10 +92,10 @@ export default function Contact() {
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
           <span className="text-sm font-semibold tracking-widest uppercase gradient-text">Get In Touch</span>
-          <h1 className="text-5xl md:text-6xl font-black text-white mt-4 mb-6">
+          <h1 className="text-5xl md:text-6xl font-black text-t-text mt-4 mb-6">
             Let's Build Something<br /><span className="gradient-text">Remarkable</span>
           </h1>
-          <p className="text-gray-400 text-lg max-w-xl mx-auto">
+          <p className="text-t-secondary text-lg max-w-xl mx-auto">
             Free strategy session. No commitment. We'll audit your current digital presence and show you exactly what we'd do.
           </p>
         </motion.div>
@@ -116,14 +111,14 @@ export default function Contact() {
                 <div className="flex items-center gap-2 mb-8">
                   {steps.map((_, i) => (
                     <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-500 ${
-                      i <= step ? 'brand-gradient' : 'bg-[#1A1A2E]'
+                      i <= step ? 'brand-gradient' : 'bg-t-border'
                     }`} />
                   ))}
                 </div>
-                <p className="text-gray-500 text-xs mb-2">Step {step + 1} of {steps.length}</p>
+                <p className="text-t-muted text-xs mb-2">Step {step + 1} of {steps.length}</p>
 
                 <motion.div key={step} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }}>
-                  <h2 className="text-white font-black text-2xl mb-6">{steps[step].q}</h2>
+                  <h2 className="text-t-text font-black text-2xl mb-6">{steps[step].q}</h2>
 
                   {/* Step 0 — services multi-select */}
                   {step === 0 && (
@@ -131,7 +126,7 @@ export default function Contact() {
                       {steps[0].options.map(o => (
                         <button key={o} onClick={() => toggleService(o)}
                           className={`px-4 py-2 rounded-xl text-sm font-medium transition-all relative overflow-hidden ${
-                            answers.services.includes(o) ? 'text-white' : 'glass text-gray-400 hover:text-white border border-[#1A1A2E]'
+                            answers.services.includes(o) ? 'text-white' : 'glass text-t-secondary hover:text-t-text border border-t-border'
                           }`}
                         >
                           {answers.services.includes(o) && <span className="absolute inset-0 brand-gradient" />}
@@ -147,7 +142,7 @@ export default function Contact() {
                       {steps[1].options.map(o => (
                         <button key={o} onClick={() => setAnswers(a => ({ ...a, budget: o }))}
                           className={`px-4 py-3 rounded-xl text-sm font-medium transition-all text-left relative overflow-hidden ${
-                            answers.budget === o ? 'text-white' : 'glass text-gray-400 hover:text-white border border-[#1A1A2E]'
+                            answers.budget === o ? 'text-white' : 'glass text-t-secondary hover:text-t-text border border-t-border'
                           }`}
                         >
                           {answers.budget === o && <span className="absolute inset-0 brand-gradient" />}
@@ -163,7 +158,7 @@ export default function Contact() {
                       {steps[2].options.map(o => (
                         <button key={o} onClick={() => setAnswers(a => ({ ...a, timeline: o }))}
                           className={`px-4 py-3 rounded-xl text-sm font-medium transition-all text-left relative overflow-hidden ${
-                            answers.timeline === o ? 'text-white' : 'glass text-gray-400 hover:text-white border border-[#1A1A2E]'
+                            answers.timeline === o ? 'text-white' : 'glass text-t-secondary hover:text-t-text border border-t-border'
                           }`}
                         >
                           {answers.timeline === o && <span className="absolute inset-0 brand-gradient" />}
@@ -185,13 +180,13 @@ export default function Contact() {
                         ].map(f => (
                           <input key={f.key} type={f.type || 'text'} placeholder={f.placeholder} required={f.required}
                             value={form[f.key]} onChange={e => setForm(p => ({ ...p, [f.key]: e.target.value }))}
-                            className="bg-[#0D0D14] border border-[#1A1A2E] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#7600C4] transition-colors"
+                            className="bg-t-input border border-t-border rounded-xl px-4 py-3 text-t-text text-sm placeholder-t-faint focus:outline-none focus:border-[#7600C4] transition-colors"
                           />
                         ))}
                       </div>
                       <textarea placeholder="Tell us more about your business and goals..." rows={4}
                         value={form.message} onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
-                        className="w-full bg-[#0D0D14] border border-[#1A1A2E] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#7600C4] transition-colors resize-none"
+                        className="w-full bg-t-input border border-t-border rounded-xl px-4 py-3 text-t-text text-sm placeholder-t-faint focus:outline-none focus:border-[#7600C4] transition-colors resize-none"
                       />
 
                       {submitError && (
@@ -215,7 +210,7 @@ export default function Contact() {
                   <div className="flex justify-between mt-8">
                     {step > 0 && (
                       <button onClick={() => setStep(s => s - 1)}
-                        className="px-5 py-2.5 rounded-xl glass text-gray-400 text-sm border border-[#1A1A2E] hover:text-white transition-all">
+                        className="px-5 py-2.5 rounded-xl glass text-t-secondary text-sm border border-t-border hover:text-t-text transition-all">
                         ← Back
                       </button>
                     )}
@@ -236,11 +231,11 @@ export default function Contact() {
                 className="glass rounded-3xl p-12 text-center"
               >
                 <div className="text-6xl mb-6">🎉</div>
-                <h2 className="text-3xl font-black text-white mb-4">We've Got Your Details!</h2>
-                <p className="text-gray-400 mb-2">
-                  Our team will reach out within <span className="text-white font-semibold">24 hours</span> to schedule your free strategy call.
+                <h2 className="text-3xl font-black text-t-text mb-4">We've Got Your Details!</h2>
+                <p className="text-t-secondary mb-2">
+                  Our team will reach out within <span className="text-t-text font-semibold">24 hours</span> to schedule your free strategy call.
                 </p>
-                <p className="text-gray-600 text-sm">
+                <p className="text-t-faint text-sm">
                   Check your email at <span className="text-[#4CFFE7]">{form.email}</span>
                 </p>
               </motion.div>
@@ -255,11 +250,11 @@ export default function Contact() {
               >
                 <span className="text-2xl">{item.icon}</span>
                 <div>
-                  <p className="text-gray-500 text-xs mb-1">{item.label}</p>
+                  <p className="text-t-muted text-xs mb-1">{item.label}</p>
                   {item.href ? (
-                    <a href={item.href} className="text-white text-sm font-medium hover:text-[#4CFFE7] transition-colors">{item.value}</a>
+                    <a href={item.href} className="text-t-text text-sm font-medium hover:text-[#4CFFE7] transition-colors">{item.value}</a>
                   ) : (
-                    <p className="text-white text-sm font-medium">{item.value}</p>
+                    <p className="text-t-text text-sm font-medium">{item.value}</p>
                   )}
                 </div>
               </motion.div>
@@ -268,11 +263,11 @@ export default function Contact() {
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }}
               className="glass rounded-2xl p-5"
             >
-              <p className="text-gray-500 text-xs mb-3">Follow Us</p>
+              <p className="text-t-muted text-xs mb-3">Follow Us</p>
               <div className="flex flex-wrap gap-2">
                 {socials.map(s => (
                   <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#1A1A2E] text-gray-400 hover:text-[#4CFFE7] hover:border-[#4CFFE730] transition-all text-xs"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-t-border text-t-secondary hover:text-[#4CFFE7] hover:border-[#4CFFE730] transition-all text-xs"
                   >
                     {s.icon} {s.name}
                   </a>
@@ -286,10 +281,10 @@ export default function Contact() {
             >
               <span className="text-3xl">💬</span>
               <div>
-                <p className="text-white font-semibold text-sm">Chat on WhatsApp</p>
-                <p className="text-gray-500 text-xs">Quick response guaranteed</p>
+                <p className="text-t-text font-semibold text-sm">Chat on WhatsApp</p>
+                <p className="text-t-muted text-xs">Quick response guaranteed</p>
               </div>
-              <span className="ml-auto text-gray-500 group-hover:text-[#25D366] transition-colors">→</span>
+              <span className="ml-auto text-t-muted group-hover:text-[#25D366] transition-colors">→</span>
             </motion.a>
           </div>
         </div>

@@ -33,12 +33,12 @@ function BlogSkeleton() {
   return (
     <div className="glass rounded-2xl p-6 animate-pulse space-y-3">
       <div className="flex gap-2">
-        <div className="h-5 w-24 bg-[#1A1A2E] rounded-full" />
-        <div className="h-5 w-16 bg-[#1A1A2E] rounded-full" />
+        <div className="h-5 w-24 bg-t-skeleton rounded-full" />
+        <div className="h-5 w-16 bg-t-skeleton rounded-full" />
       </div>
-      <div className="h-5 w-full bg-[#1A1A2E] rounded" />
-      <div className="h-5 w-3/4 bg-[#1A1A2E] rounded" />
-      <div className="h-4 w-1/2 bg-[#1A1A2E] rounded" />
+      <div className="h-5 w-full bg-t-skeleton rounded" />
+      <div className="h-5 w-3/4 bg-t-skeleton rounded" />
+      <div className="h-4 w-1/2 bg-t-skeleton rounded" />
     </div>
   )
 }
@@ -75,10 +75,10 @@ export default function Resources() {
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
           <span className="text-sm font-semibold tracking-widest uppercase gradient-text">Knowledge Hub</span>
-          <h1 className="text-5xl md:text-6xl font-black text-white mt-4 mb-6">
+          <h1 className="text-5xl md:text-6xl font-black text-t-text mt-4 mb-6">
             Resources That<br /><span className="gradient-text">Actually Help</span>
           </h1>
-          <p className="text-gray-400 text-lg max-w-xl mx-auto">
+          <p className="text-t-secondary text-lg max-w-xl mx-auto">
             Case studies, insights and news from the frontlines of digital marketing and tech.
           </p>
         </motion.div>
@@ -88,7 +88,7 @@ export default function Resources() {
           {tabs.map(t => (
             <button key={t} onClick={() => setTab(t)}
               className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all relative overflow-hidden ${
-                tab === t ? 'text-white' : 'glass text-gray-400 hover:text-white border border-[#1A1A2E]'
+                tab === t ? 'text-white' : 'glass text-t-secondary hover:text-t-text border border-t-border'
               }`}
             >
               {tab === t && <span className="absolute inset-0 brand-gradient" />}
@@ -111,10 +111,10 @@ export default function Resources() {
                     <span className="text-xs px-2 py-1 rounded-full bg-[#7600C420] text-[#4CFFE7]">{c.category}</span>
                     <span className="text-3xl">{c.icon}</span>
                   </div>
-                  <h3 className="text-white font-bold text-lg mb-2">{c.client}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{c.summary}</p>
+                  <h3 className="text-t-text font-bold text-lg mb-2">{c.client}</h3>
+                  <p className="text-t-muted text-sm leading-relaxed mb-4">{c.summary}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-white font-black text-xl">{c.result}</span>
+                    <span className="text-t-text font-black text-xl">{c.result}</span>
                     <Link to="/portfolio" className="text-[#4CFFE7] text-xs hover:underline">Full case →</Link>
                   </div>
                 </div>
@@ -124,8 +124,8 @@ export default function Resources() {
               className="glass rounded-2xl p-6 flex flex-col items-center justify-center text-center border-dashed border-[#7600C440] cursor-pointer hover:border-[#7600C4] transition-all"
             >
               <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-white font-bold mb-2">More Coming Soon</h3>
-              <p className="text-gray-500 text-sm">We're documenting more client journeys. Stay tuned.</p>
+              <h3 className="text-t-text font-bold mb-2">More Coming Soon</h3>
+              <p className="text-t-muted text-sm">We're documenting more client journeys. Stay tuned.</p>
             </motion.div>
           </motion.div>
         )}
@@ -140,7 +140,7 @@ export default function Resources() {
                 placeholder="Search blogs..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                className="w-full bg-[#10101A] border border-[#1A1A2E] rounded-xl px-5 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#7600C4] transition-colors"
+                className="w-full bg-t-input border border-t-border rounded-xl px-5 py-3 text-t-text text-sm placeholder-t-faint focus:outline-none focus:border-[#7600C4] transition-colors"
               />
             </div>
 
@@ -155,7 +155,7 @@ export default function Resources() {
             {error && !loading && (
               <div className="text-center py-12">
                 <div className="text-4xl mb-4">😕</div>
-                <p className="text-gray-400">{error}</p>
+                <p className="text-t-secondary">{error}</p>
               </div>
             )}
 
@@ -163,7 +163,7 @@ export default function Resources() {
             {!loading && !error && (
               <div className="space-y-4 max-w-3xl mx-auto">
                 {filteredBlogs.length === 0 && (
-                  <div className="text-center py-12 text-gray-500">No blogs found.</div>
+                  <div className="text-center py-12 text-t-muted">No blogs found.</div>
                 )}
                 {filteredBlogs.map((b, i) => (
                   <motion.div
@@ -192,16 +192,16 @@ export default function Resources() {
                             {b.category?.name && (
                               <span className="text-xs px-2 py-0.5 rounded-full bg-[#7600C420] text-[#4CFFE7]">{b.category.name}</span>
                             )}
-                            <span className="text-gray-600 text-xs">{formatDate(b.createdAt)}</span>
-                            <span className="text-gray-600 text-xs">· {readTime(b.meta?.description)} read</span>
+                            <span className="text-t-faint text-xs">{formatDate(b.createdAt)}</span>
+                            <span className="text-t-faint text-xs">· {readTime(b.meta?.description)} read</span>
                           </div>
-                          <h3 className="text-white font-bold text-base md:text-lg mb-2 group-hover:text-[#4CFFE7] transition-colors line-clamp-2">
+                          <h3 className="text-t-text font-bold text-base md:text-lg mb-2 group-hover:text-[#4CFFE7] transition-colors line-clamp-2">
                             {b.title}
                           </h3>
-                          <p className="text-gray-500 text-sm line-clamp-2">{b.meta?.description}</p>
+                          <p className="text-t-muted text-sm line-clamp-2">{b.meta?.description}</p>
                         </div>
                         <div className="flex items-center justify-between mt-4">
-                          <span className="text-gray-600 text-xs">By {b.authorName}</span>
+                          <span className="text-t-faint text-xs">By {b.authorName}</span>
                           <span className="text-[#4CFFE7] text-xs font-medium group-hover:underline">Read more →</span>
                         </div>
                       </div>
@@ -223,9 +223,9 @@ export default function Resources() {
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-xs px-2 py-0.5 rounded-full bg-[#D300E520] text-[#D300E5]">{n.tag}</span>
-                    <span className="text-gray-600 text-xs">{n.date}</span>
+                    <span className="text-t-faint text-xs">{n.date}</span>
                   </div>
-                  <h3 className="text-white font-semibold text-base">{n.title}</h3>
+                  <h3 className="text-t-text font-semibold text-base">{n.title}</h3>
                 </div>
               </motion.div>
             ))}

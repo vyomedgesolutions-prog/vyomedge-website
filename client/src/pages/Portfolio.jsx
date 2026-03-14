@@ -102,10 +102,10 @@ export default function Portfolio() {
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
           <span className="text-sm font-semibold tracking-widest uppercase gradient-text">Proof of Work</span>
-          <h1 className="text-5xl md:text-7xl font-black text-white mt-4 mb-6">
+          <h1 className="text-5xl md:text-7xl font-black text-t-text mt-4 mb-6">
             Results That<br /><span className="gradient-text">Speak Louder</span>
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-t-secondary text-lg max-w-2xl mx-auto">
             Every number below is real. Every client is real. This is what happens when strategy meets execution.
           </p>
         </motion.div>
@@ -115,7 +115,7 @@ export default function Portfolio() {
           {filters.map(f => (
             <button key={f} onClick={() => setActive(f)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                active === f ? 'text-white relative overflow-hidden' : 'glass text-gray-400 hover:text-white border border-[#1A1A2E]'
+                active === f ? 'text-white relative overflow-hidden' : 'glass text-t-secondary hover:text-t-text border border-t-border'
               }`}
             >
               {active === f && <span className="absolute inset-0 brand-gradient" />}
@@ -149,24 +149,24 @@ export default function Portfolio() {
                           <span key={t} className="text-xs px-2 py-0.5 rounded-full bg-[#7600C420] text-[#4CFFE7]">{t}</span>
                         ))}
                       </div>
-                      <h3 className="text-white font-bold text-lg group-hover:gradient-text transition-all">{c.client}</h3>
+                      <h3 className="text-t-text font-bold text-lg group-hover:gradient-text transition-all">{c.client}</h3>
                     </div>
                     <span className="text-3xl">{c.icon}</span>
                   </div>
 
-                  <p className="text-gray-500 text-sm mb-5 leading-relaxed line-clamp-2">{c.description}</p>
+                  <p className="text-t-muted text-sm mb-5 leading-relaxed line-clamp-2">{c.description}</p>
 
                   <div className="grid grid-cols-2 gap-3">
                     {c.results.slice(0, 4).map((r, idx) => (
-                      <div key={idx} className="bg-[#0D0D14] rounded-xl p-3">
-                        <div className="text-white font-black text-lg">{r.value}</div>
-                        <div className="text-gray-600 text-xs mt-0.5">{r.label}</div>
+                      <div key={idx} className="bg-t-result rounded-xl p-3">
+                        <div className="text-t-text font-black text-lg">{r.value}</div>
+                        <div className="text-t-faint text-xs mt-0.5">{r.label}</div>
                       </div>
                     ))}
                   </div>
 
                   <div className="mt-4 flex items-center justify-between">
-                    <div className="flex gap-3 text-xs text-gray-600">
+                    <div className="flex gap-3 text-xs text-t-faint">
                       <span>DA {c.metrics.da}</span>
                       <span>PA {c.metrics.pa}</span>
                     </div>
@@ -182,8 +182,8 @@ export default function Portfolio() {
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-center mt-20 glass rounded-3xl p-12"
         >
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Want Results Like These?</h2>
-          <p className="text-gray-400 mb-8 max-w-lg mx-auto">Let's build your success story. Free strategy session, no commitment required.</p>
+          <h2 className="text-3xl md:text-4xl font-black text-t-text mb-4">Want Results Like These?</h2>
+          <p className="text-t-secondary mb-8 max-w-lg mx-auto">Let's build your success story. Free strategy session, no commitment required.</p>
           <Link to="/contact" className="relative inline-block px-10 py-4 rounded-xl text-white font-bold text-base overflow-hidden group">
             <span className="absolute inset-0 brand-gradient" />
             <span className="relative z-10">Book a Free Strategy Call →</span>
@@ -203,12 +203,12 @@ export default function Portfolio() {
               className="glass rounded-3xl p-8 max-w-lg w-full relative"
             >
               <button onClick={() => setSelected(null)}
-                className="absolute top-4 right-4 text-gray-500 hover:text-white text-2xl leading-none">×</button>
+                className="absolute top-4 right-4 text-t-muted hover:text-t-text text-2xl leading-none">×</button>
 
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-4xl">{selected.icon}</span>
                 <div>
-                  <h3 className="text-white font-black text-2xl">{selected.client}</h3>
+                  <h3 className="text-t-text font-black text-2xl">{selected.client}</h3>
                   <div className="flex gap-2 mt-1 flex-wrap">
                     {selected.tags.map(t => (
                       <span key={t} className="text-xs px-2 py-0.5 rounded-full bg-[#7600C420] text-[#4CFFE7]">{t}</span>
@@ -217,13 +217,13 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">{selected.description}</p>
+              <p className="text-t-secondary text-sm leading-relaxed mb-6">{selected.description}</p>
 
               <div className="grid grid-cols-2 gap-3 mb-6">
                 {selected.results.map((r, i) => (
-                  <div key={i} className="bg-[#0D0D14] rounded-xl p-4">
-                    <div className="text-white font-black text-xl">{r.value}</div>
-                    <div className="text-gray-500 text-xs mt-1">{r.label}</div>
+                  <div key={i} className="bg-t-result rounded-xl p-4">
+                    <div className="text-t-text font-black text-xl">{r.value}</div>
+                    <div className="text-t-muted text-xs mt-1">{r.label}</div>
                   </div>
                 ))}
               </div>
