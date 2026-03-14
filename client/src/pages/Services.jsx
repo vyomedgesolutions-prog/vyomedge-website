@@ -116,11 +116,11 @@ export default function Services() {
           className="text-center mb-20"
         >
           <span className="text-sm font-semibold tracking-widest uppercase gradient-text">What We Do</span>
-          <h1 className="text-5xl md:text-7xl font-black text-white mt-4 mb-6">
+          <h1 className="text-5xl md:text-7xl font-black text-t-text mt-4 mb-6">
             One Roof.<br />
             <span className="gradient-text">Every Service.</span>
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-t-secondary text-lg max-w-2xl mx-auto">
             Stop juggling multiple agencies. We handle your entire digital ecosystem — strategy, design, development and marketing — as one unified team.
           </p>
         </motion.div>
@@ -146,16 +146,16 @@ export default function Services() {
                   <span className="text-4xl">{s.icon}</span>
                   <span className="text-xs px-2 py-1 rounded-full bg-[#7600C420] text-[#4CFFE7]">{s.short}</span>
                 </div>
-                <h3 className="text-white font-bold text-lg mb-1">{s.title}</h3>
+                <h3 className="text-t-text font-bold text-lg mb-1">{s.title}</h3>
                 <p className="text-[#4CFFE7] text-xs font-medium mb-3">{s.tagline}</p>
-                <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">{s.description}</p>
+                <p className="text-t-muted text-sm leading-relaxed mb-4 line-clamp-2">{s.description}</p>
 
                 {/* Result pill */}
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="text-white font-black text-lg">{s.results.metric}</div>
+                  <div className="text-t-text font-black text-lg">{s.results.metric}</div>
                   <div>
-                    <div className="text-gray-400 text-xs">{s.results.label}</div>
-                    <div className="text-gray-600 text-xs">{s.results.client}</div>
+                    <div className="text-t-secondary text-xs">{s.results.label}</div>
+                    <div className="text-t-faint text-xs">{s.results.client}</div>
                   </div>
                 </div>
 
@@ -174,11 +174,11 @@ export default function Services() {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="mt-4 pt-4 border-t border-[#1A1A2E]">
-                        <p className="text-xs text-gray-500 uppercase tracking-widest mb-3">Deliverables</p>
+                      <div className="mt-4 pt-4 border-t border-t-border">
+                        <p className="text-xs text-t-muted uppercase tracking-widest mb-3">Deliverables</p>
                         <div className="grid grid-cols-2 gap-2">
                           {s.deliverables.map((d, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-xs text-gray-400">
+                            <div key={idx} className="flex items-center gap-2 text-xs text-t-secondary">
                               <span className="w-1 h-1 rounded-full bg-[#4CFFE7] flex-shrink-0" />
                               {d}
                             </div>
@@ -202,7 +202,7 @@ export default function Services() {
         >
           <div className="text-center mb-14">
             <span className="text-sm font-semibold tracking-widest uppercase gradient-text">How We Work</span>
-            <h2 className="text-4xl md:text-5xl font-black text-white mt-3">
+            <h2 className="text-4xl md:text-5xl font-black text-t-text mt-3">
               Simple. Structured.<br /><span className="gradient-text">Accountable.</span>
             </h2>
           </div>
@@ -218,8 +218,8 @@ export default function Services() {
                 className="glass rounded-2xl p-6 relative"
               >
                 <div className="text-5xl font-black gradient-text mb-4">{p.step}</div>
-                <h3 className="text-white font-bold mb-2">{p.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{p.desc}</p>
+                <h3 className="text-t-text font-bold mb-2">{p.title}</h3>
+                <p className="text-t-muted text-sm leading-relaxed">{p.desc}</p>
                 {i < process.length - 1 && (
                   <div className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 text-[#7600C4] text-xl z-10">→</div>
                 )}
@@ -237,10 +237,10 @@ export default function Services() {
         >
           <div className="absolute inset-0 opacity-10 brand-gradient" />
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-black text-t-text mb-4">
               Not Sure Which Service You Need?
             </h2>
-            <p className="text-gray-400 mb-8 max-w-lg mx-auto">
+            <p className="text-t-secondary mb-8 max-w-lg mx-auto">
               Book a free 30-min strategy call. We'll audit your current digital presence and recommend exactly what will move the needle for your business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -248,7 +248,7 @@ export default function Services() {
                 <span className="absolute inset-0 brand-gradient" />
                 <span className="relative z-10">Book Free Strategy Call →</span>
               </Link>
-              <Link to="/portfolio" className="px-8 py-4 rounded-xl border border-[#1A1A2E] text-white font-semibold hover:border-[#7600C440] transition-all">
+              <Link to="/portfolio" className="px-8 py-4 rounded-xl border border-t-border text-t-text font-semibold hover:border-[#7600C440] transition-all">
                 See Our Results First
               </Link>
             </div>

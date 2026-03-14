@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -15,7 +16,20 @@ export default {
           card:   '#10101A',
           border: '#1A1A2E',
           muted:  '#6B7280',
-        }
+        },
+        t: {
+          bg:        'var(--theme-bg)',
+          'bg-alt':  'var(--theme-bg-alt)',
+          card:      'var(--theme-card)',
+          text:      'var(--theme-text)',
+          secondary: 'var(--theme-text-secondary)',
+          muted:     'var(--theme-text-muted)',
+          faint:     'var(--theme-text-faint)',
+          border:    'var(--theme-border)',
+          input:     'var(--theme-input-bg)',
+          result:    'var(--theme-result-card)',
+          skeleton:  'var(--theme-skeleton)',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

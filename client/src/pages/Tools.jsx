@@ -72,10 +72,10 @@ export default function Tools() {
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
           <span className="text-sm font-semibold tracking-widest uppercase gradient-text">Free Digital Products</span>
-          <h1 className="text-5xl md:text-6xl font-black text-white mt-4 mb-6">
+          <h1 className="text-5xl md:text-6xl font-black text-t-text mt-4 mb-6">
             Tools Built By Us,<br /><span className="gradient-text">Free For You</span>
           </h1>
-          <p className="text-gray-400 text-lg max-w-xl mx-auto">
+          <p className="text-t-secondary text-lg max-w-xl mx-auto">
             We build free digital tools regularly for businesses and marketers. No login. No credit card. Just open and use.
           </p>
         </motion.div>
@@ -105,13 +105,13 @@ export default function Tools() {
                 style={{ background: `${t.tagColor}20`, color: t.tagColor }}>
                 {t.tag}
               </span>
-              <h3 className="text-white font-bold text-lg mb-2">{t.name}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-5 flex-1">{t.desc}</p>
+              <h3 className="text-t-text font-bold text-lg mb-2">{t.name}</h3>
+              <p className="text-t-muted text-sm leading-relaxed mb-5 flex-1">{t.desc}</p>
 
               {/* Features */}
               <div className="grid grid-cols-2 gap-1.5 mb-5">
                 {t.features.map((f, idx) => (
-                  <div key={idx} className="flex items-center gap-1.5 text-xs text-gray-500">
+                  <div key={idx} className="flex items-center gap-1.5 text-xs text-t-muted">
                     <span className="w-1 h-1 rounded-full flex-shrink-0"
                       style={{ background: t.live ? '#4CFFE7' : '#7600C4' }} />
                     {f}
@@ -125,7 +125,7 @@ export default function Tools() {
                   <span className="relative z-10">Open Tool →</span>
                 </a>
               ) : (
-                <div className="w-full py-3 rounded-xl text-gray-600 font-semibold text-center text-sm border border-[#1A1A2E]">
+                <div className="w-full py-3 rounded-xl text-t-faint font-semibold text-center text-sm border border-t-border">
                   Notify Me When Live
                 </div>
               )}
@@ -143,10 +143,10 @@ export default function Tools() {
           <div className="absolute inset-0 opacity-5 brand-gradient" />
           <div className="relative z-10">
             <div className="text-5xl mb-4">🛠️</div>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-black text-t-text mb-4">
               Need a Custom Tool for Your Business?
             </h2>
-            <p className="text-gray-400 mb-8 max-w-lg mx-auto">
+            <p className="text-t-secondary mb-8 max-w-lg mx-auto">
               We build internal tools, dashboards and digital products for businesses. Tell us what you need.
             </p>
             <Link to="/contact" className="relative inline-block px-8 py-4 rounded-xl text-white font-bold overflow-hidden">

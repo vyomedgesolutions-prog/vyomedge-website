@@ -89,13 +89,6 @@ const tools = [
   { name: 'Sales Tracker', desc: 'Monitor leads, conversions and revenue across all your campaigns.', tag: 'Coming Soon', icon: '💰' },
 ]
 
-// ── Floating orb background ───────────────────────────────────
-function Orb({ className }) {
-  return (
-    <div className={`absolute rounded-full blur-[120px] opacity-20 pointer-events-none ${className}`} />
-  )
-}
-
 // ── Main Component ────────────────────────────────────────────
 export default function Home() {
   const heroRef = useRef(null)
@@ -141,7 +134,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[1.05] tracking-tight mb-6"
+            className="text-5xl md:text-7xl lg:text-8xl font-black text-t-text leading-[1.05] tracking-tight mb-6"
           >
             We Don't Just
             <br />
@@ -157,7 +150,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-t-secondary text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
           >
             From logo to launch, SEO to Meta Ads — we design, develop and market your entire digital ecosystem under one accountable roof.
           </motion.p>
@@ -177,7 +170,7 @@ export default function Home() {
             </Link>
             <Link
               to="/contact"
-              className="px-8 py-4 rounded-xl border border-[#1E1E2E] text-white font-semibold text-base hover:border-[#7C3AED40] hover:bg-[#7C3AED10] transition-all"
+              className="px-8 py-4 rounded-xl border border-t-border text-t-text font-semibold text-base hover:border-[#7C3AED40] hover:bg-[#7C3AED10] transition-all"
             >
               Start a Project
             </Link>
@@ -190,20 +183,20 @@ export default function Home() {
             transition={{ delay: 1.2 }}
             className="mt-20 flex flex-col items-center gap-2"
           >
-            <span className="text-gray-600 text-xs tracking-widest uppercase">Scroll to explore</span>
+            <span className="text-t-faint text-xs tracking-widest uppercase">Scroll to explore</span>
             <div className="w-px h-12 bg-gradient-to-b from-[#7C3AED] to-transparent" />
           </motion.div>
         </div>
       </section>
 
       {/* ── LIVE STATS ── */}
-      <section className="py-24 border-y border-[#1E1E2E] bg-[#0D0D14]">
+      <section className="py-24 border-y border-t-border bg-t-bg-alt transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center text-gray-500 text-sm tracking-widest uppercase mb-12"
+            className="text-center text-t-muted text-sm tracking-widest uppercase mb-12"
           >
             Real results from real clients
           </motion.p>
@@ -217,11 +210,11 @@ export default function Home() {
                 transition={{ delay: i * 0.1 }}
                 className="text-center"
               >
-                <div className="text-4xl md:text-5xl font-black text-white mb-1">
+                <div className="text-4xl md:text-5xl font-black text-t-text mb-1">
                   <Counter target={s.value} suffix={s.suffix} prefix={s.prefix} />
                 </div>
                 <div className="text-[#A78BFA] text-sm font-medium mb-1">{s.label}</div>
-                <div className="text-gray-600 text-xs">{s.client}</div>
+                <div className="text-t-faint text-xs">{s.client}</div>
               </motion.div>
             ))}
           </div>
@@ -237,7 +230,7 @@ export default function Home() {
           className="text-center mb-16"
         >
           <span className="text-[#7C3AED] text-sm font-semibold tracking-widest uppercase">What We Do</span>
-          <h2 className="text-4xl md:text-5xl font-black text-white mt-3">
+          <h2 className="text-4xl md:text-5xl font-black text-t-text mt-3">
             Everything Your Business Needs
             <br />
             <span className="gradient-text">Under One Roof</span>
@@ -256,8 +249,8 @@ export default function Home() {
               className="glass rounded-2xl p-6 cursor-pointer group hover:border-[#7C3AED40] transition-all"
             >
               <div className="text-3xl mb-4">{s.icon}</div>
-              <h3 className="text-white font-bold text-base mb-2 group-hover:text-[#A78BFA] transition-colors">{s.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{s.desc}</p>
+              <h3 className="text-t-text font-bold text-base mb-2 group-hover:text-[#A78BFA] transition-colors">{s.title}</h3>
+              <p className="text-t-muted text-sm leading-relaxed">{s.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -270,7 +263,7 @@ export default function Home() {
       </section>
 
       {/* ── CASE STUDIES ── */}
-      <section className="section bg-[#0D0D14] border-y border-[#1E1E2E]">
+      <section className="section bg-t-bg-alt border-y border-t-border transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -280,7 +273,7 @@ export default function Home() {
           >
             <div>
               <span className="text-[#7C3AED] text-sm font-semibold tracking-widest uppercase">Proof of Work</span>
-              <h2 className="text-4xl md:text-5xl font-black text-white mt-3">
+              <h2 className="text-4xl md:text-5xl font-black text-t-text mt-3">
                 Results That<br /><span className="gradient-text">Speak Louder</span>
               </h2>
             </div>
@@ -307,13 +300,13 @@ export default function Home() {
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-6">
                     <div>
-                      <span className="text-xs text-gray-500 uppercase tracking-widest">{c.category}</span>
-                      <h3 className="text-white font-bold text-xl mt-1">{c.client}</h3>
+                      <span className="text-xs text-t-muted uppercase tracking-widest">{c.category}</span>
+                      <h3 className="text-t-text font-bold text-xl mt-1">{c.client}</h3>
                     </div>
                     <span className="text-4xl">{c.icon}</span>
                   </div>
-                  <div className="text-3xl font-black text-white mb-2">{c.result}</div>
-                  <div className="text-gray-500 text-sm">{c.metric}</div>
+                  <div className="text-3xl font-black text-t-text mb-2">{c.result}</div>
+                  <div className="text-t-muted text-sm">{c.metric}</div>
                 </div>
               </motion.div>
             ))}
@@ -330,10 +323,10 @@ export default function Home() {
           className="text-center mb-16"
         >
           <span className="text-[#7C3AED] text-sm font-semibold tracking-widest uppercase">Free Digital Products</span>
-          <h2 className="text-4xl md:text-5xl font-black text-white mt-3">
+          <h2 className="text-4xl md:text-5xl font-black text-t-text mt-3">
             Tools Built By Us,<br /><span className="gradient-text">Free For You</span>
           </h2>
-          <p className="text-gray-400 mt-4 max-w-xl mx-auto text-sm">
+          <p className="text-t-secondary mt-4 max-w-xl mx-auto text-sm">
             We build free digital tools regularly. No login. No credit card. Just open and use.
           </p>
         </motion.div>
@@ -350,14 +343,14 @@ export default function Home() {
             >
               <div className="text-4xl mb-4">{t.icon}</div>
               <div className="inline-block px-2 py-1 rounded text-xs bg-[#7C3AED20] text-[#A78BFA] mb-3">{t.tag}</div>
-              <h3 className="text-white font-bold text-lg mb-2">{t.name}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{t.desc}</p>
+              <h3 className="text-t-text font-bold text-lg mb-2">{t.name}</h3>
+              <p className="text-t-muted text-sm leading-relaxed">{t.desc}</p>
             </motion.div>
           ))}
         </div>
 
         <div className="text-center mt-10">
-          <Link to="/tools" className="px-6 py-3 rounded-xl border border-[#1E1E2E] text-white text-sm font-medium hover:border-[#7C3AED40] hover:bg-[#7C3AED10] transition-all">
+          <Link to="/tools" className="px-6 py-3 rounded-xl border border-t-border text-t-text text-sm font-medium hover:border-[#7C3AED40] hover:bg-[#7C3AED10] transition-all">
             Explore All Tools →
           </Link>
         </div>
@@ -373,11 +366,11 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
+            <h2 className="text-4xl md:text-6xl font-black text-t-text mb-6">
               Ready to Build Your<br />
               <span className="gradient-text">Digital Ecosystem?</span>
             </h2>
-            <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
+            <p className="text-t-secondary text-lg mb-10 max-w-xl mx-auto">
               Let's talk about your business. Free strategy session. No commitment.
             </p>
             <Link
