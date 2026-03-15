@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { submitInquiry } from '../services/api'
+import SEO from '../components/SEO'
 
 const steps = [
   {
@@ -87,6 +88,14 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen pt-28 pb-20">
+      <SEO
+        title="Contact VyomEdge | Free Consultation | Digital Marketing Agency Bhopal"
+        description="Ready to grow your business? Contact VyomEdge for free digital marketing consultation. Call +91 79741 86754 or visit our Bhopal office. Let's discuss your project!"
+        keywords="contact VyomEdge, digital marketing consultation, free strategy call, digital marketing agency Bhopal, contact us"
+        canonical="/contact"
+        ogImage="/og-contact.jpg"
+      />
+
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import SEO from '../components/SEO'
 
 const tools = [
   {
@@ -67,6 +68,14 @@ const tools = [
 export default function Tools() {
   return (
     <div className="min-h-screen pt-28 pb-20">
+      <SEO
+        title="Free Digital Marketing Tools | SEO & Analytics"
+        description="Access free digital marketing tools by VyomEdge. Use our SEO analyzers, keyword tools & marketing calculators to boost your online presence. No signup required."
+        keywords="free SEO tools, digital marketing tools, keyword tracker, website audit tool, Meta Ads analyzer, free marketing tools"
+        canonical="/tools"
+        ogImage="/og-tools.jpg"
+      />
+
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}

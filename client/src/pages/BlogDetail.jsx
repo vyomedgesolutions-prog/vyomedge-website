@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { getBlogById } from '../services/api'
+import SEO from '../components/SEO'
 
 function formatDate(d) {
   return new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -41,6 +42,11 @@ export default function BlogDetail() {
 
   if (error) return (
     <div className="min-h-screen flex flex-col items-center justify-center pt-20">
+      <SEO
+        title="Blog Not Found"
+        description="The blog post you're looking for could not be found."
+        canonical={`/blog/${uid}`}
+      />
       <div className="text-6xl mb-4">😕</div>
       <p className="text-t-secondary mb-6">{error}</p>
       <Link to="/resources" className="text-[#4CFFE7] hover:underline">← Back to Resources</Link>
@@ -51,6 +57,15 @@ export default function BlogDetail() {
 
   return (
     <div className="min-h-screen pb-20">
+      <SEO
+        title={blog.title}
+        description={blog.meta?.description || `Read ${blog.title} on VyomEdge blog.`}
+        keywords={blog.tags?.join(', ') || 'digital marketing, SEO, VyomEdge blog'}
+        canonical={`/blog/${uid}`}
+        ogImage={blog.featuredImage?.url || '/og-blog.jpg'}
+        ogType="article"
+      />
+
       {/* Hero */}
       <div className="relative pt-28 pb-16 dot-grid">
         <div className="absolute inset-0 bg-gradient-to-b from-t-bg via-transparent to-t-bg pointer-events-none" />
