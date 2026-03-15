@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import SEO from '../components/SEO'
 
 const STATIC_FILTERS = ['All', 'Full Ecosystem', 'SEO', 'Meta Ads', 'Web Dev', 'Google Ads']
 
@@ -97,6 +98,14 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen pt-28 pb-20">
+      <SEO
+        title="Our Work & Case Studies | Digital Marketing Portfolio"
+        description="See real results from VyomEdge's digital marketing campaigns. Explore SEO success stories, web development projects & marketing case studies from Bhopal businesses."
+        keywords="digital marketing portfolio, case studies, SEO results, Meta Ads case study, web development projects Bhopal"
+        canonical="/portfolio"
+        ogImage="/og-portfolio.jpg"
+      />
+
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}

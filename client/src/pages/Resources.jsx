@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { getBlogs } from '../services/api'
+import SEO from '../components/SEO'
 
 const tabs = ['Case Studies', 'Blog', 'News']
 
@@ -70,6 +71,14 @@ export default function Resources() {
 
   return (
     <div className="min-h-screen pt-28 pb-20">
+      <SEO
+        title="Digital Marketing Blog & Resources | SEO Tips & Guides"
+        description="Learn digital marketing with VyomEdge's expert resources. Free SEO tips, social media strategies, web development guides & marketing insights for growth."
+        keywords="digital marketing blog, SEO tips, marketing resources, case studies, digital marketing guides Bhopal"
+        canonical="/resources"
+        ogImage="/og-resources.jpg"
+      />
+
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}

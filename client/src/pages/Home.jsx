@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import SEO from '../components/SEO'
 
 // ── Animated Counter ──────────────────────────────────────────
 function Counter({ target, suffix = '', prefix = '' }) {
@@ -104,6 +105,13 @@ export default function Home() {
 
   return (
     <div className="relative overflow-hidden">
+      <SEO
+        title="Best Digital Marketing Agency in Bhopal | SEO & Web Dev"
+        description="VyomEdge is a leading digital marketing agency in Bhopal offering SEO, web development, Meta Ads & social media marketing. Grow your business with data-driven strategies!"
+        keywords="digital marketing agency Bhopal, SEO company Bhopal, web development Bhopal, Meta Ads agency, social media marketing"
+        canonical="/"
+        ogImage="/og-home.jpg"
+      />
 
       {/* ── HERO ── */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center dot-grid pt-20">
@@ -123,7 +131,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs text-[#A78BFA] mb-8 border border-[#7C3AED30]"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs text-purple-700 dark:text-[#A78BFA] mb-8 border border-[#7C3AED30]"
           >
             <span className="w-2 h-2 rounded-full bg-[#7C3AED] animate-pulse" />
             Full-Stack Digital Growth Partner · Bhopal, India
@@ -213,7 +221,7 @@ export default function Home() {
                 <div className="text-4xl md:text-5xl font-black text-t-text mb-1">
                   <Counter target={s.value} suffix={s.suffix} prefix={s.prefix} />
                 </div>
-                <div className="text-[#A78BFA] text-sm font-medium mb-1">{s.label}</div>
+                <div className="text-purple-700 dark:text-[#A78BFA] text-sm font-medium mb-1">{s.label}</div>
                 <div className="text-t-faint text-xs">{s.client}</div>
               </motion.div>
             ))}
