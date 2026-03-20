@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { getBlogById } from '../services/api'
-import SEO from '../components/SEO'
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { getBlogById } from "../services/api";
+import SEO from "../components/SEO";
 
 function formatDate(d) {
-  return new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
+  return new Date(d).toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 }
 
 function Skeleton() {
@@ -15,54 +18,69 @@ function Skeleton() {
       <div className="h-5 bg-t-skeleton rounded w-1/2" />
       <div className="h-64 bg-t-skeleton rounded-2xl" />
       {[...Array(6)].map((_, i) => (
-        <div key={i} className="h-4 bg-t-skeleton rounded" style={{ width: `${70 + Math.random() * 30}%` }} />
+        <div
+          key={i}
+          className="h-4 bg-t-skeleton rounded"
+          style={{ width: `${70 + Math.random() * 30}%` }}
+        />
       ))}
     </div>
-  )
+  );
 }
 
 export default function BlogDetail() {
-  const { uid } = useParams()
-  const [blog, setBlog]     = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError]   = useState(null)
+  const { slug } = useParams();
+  const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setLoading(true)
-    getBlogById(uid)
-      .then(data => {
-        if (data?.blog || data) setBlog(data?.blog || data)
-        else setError('Blog not found.')
+    setLoading(true);
+    getBlogById(slug)
+      .then((data) => {
+        if (data?.blog || data) setBlog(data?.blog || data);
+        else setError("Blog not found.");
       })
-      .catch(() => setError('Could not load blog.'))
-      .finally(() => setLoading(false))
-  }, [uid])
+      .catch(() => setError("Could not load blog."))
+      .finally(() => setLoading(false));
+  }, [slug]);
 
-  if (loading) return <Skeleton />
+  if (loading) return <Skeleton />;
 
-  if (error) return (
-    <div className="min-h-screen flex flex-col items-center justify-center pt-20">
-      <SEO
-        title="Blog Not Found"
-        description="The blog post you're looking for could not be found."
-        canonical={`/blog/${uid}`}
-      />
-      <div className="text-6xl mb-4">😕</div>
-      <p className="text-t-secondary mb-6">{error}</p>
-      <Link to="/resources" className="text-[#4CFFE7] hover:underline">← Back to Resources</Link>
-    </div>
-  )
+  if (error)
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center pt-20">
+        <SEO
+          title="Blog Not Found"
+          description="The blog post you're looking for could not be found."
+          canonical={`/blog/${slug}`}
+        />
+        <div className="text-6xl mb-4">😕</div>
+        <p className="text-t-secondary mb-6">{error}</p>
+        <Link to="/resources" className="text-[#4CFFE7] hover:underline">
+          ← Back to Resources
+        </Link>
+      </div>
+    );
 
-  if (!blog) return null
+  if (!blog) return null;
 
   return (
     <div className="min-h-screen pb-20">
       <SEO
-        title={blog.title}
-        description={blog.meta?.description || `Read ${blog.title} on VyomEdge blog.`}
-        keywords={blog.tags?.join(', ') || 'digital marketing, SEO, VyomEdge blog'}
-        canonical={`/blog/${uid}`}
-        ogImage={blog.featuredImage?.url || '/og-blog.jpg'}
+        title={blog.seoTitle || blog.title}
+        description={
+          blog.seoDescription ||
+          blog.excerpt ||
+          `Read ${blog.title} on VyomEdge blog.`
+        }
+        keywords={
+          blog.seoKeywords ||
+          blog.tags?.join(", ") ||
+          "digital marketing, SEO, VyomEdge blog"
+        }
+        canonical={blog.canonicalUrl || `/blog/${slug}`}
+        ogImage={blog.featuredImage || "/og-blog.jpg"}
         ogType="article"
       />
 
@@ -70,25 +88,46 @@ export default function BlogDetail() {
       <div className="relative pt-28 pb-16 dot-grid">
         <div className="absolute inset-0 bg-gradient-to-b from-t-bg via-transparent to-t-bg pointer-events-none" />
         <div className="relative z-10 max-w-3xl mx-auto px-6">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
             {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-xs text-t-muted mb-6">
-              <Link to="/" className="hover:text-[#4CFFE7] transition-colors">Home</Link>
+              <Link to="/" className="hover:text-[#4CFFE7] transition-colors">
+                Home
+              </Link>
               <span>→</span>
-              <Link to="/resources" className="hover:text-[#4CFFE7] transition-colors">Resources</Link>
+              <Link
+                to="/resources"
+                className="hover:text-[#4CFFE7] transition-colors"
+              >
+                Resources
+              </Link>
               <span>→</span>
-              <span className="text-t-secondary line-clamp-1">{blog.title}</span>
+              <span className="text-t-secondary line-clamp-1">
+                {blog.title}
+              </span>
             </div>
 
-            {/* Category & date */}
+            {/* Category · Date · Author · Read time */}
             <div className="flex flex-wrap items-center gap-3 mb-5">
-              {blog.category?.name && (
+              {blog.category && (
                 <span className="text-xs px-3 py-1 rounded-full bg-[#7600C420] text-[#4CFFE7]">
-                  {blog.category.name}
+                  {blog.category}
                 </span>
               )}
-              <span className="text-t-muted text-xs">{formatDate(blog.createdAt)}</span>
-              <span className="text-t-muted text-xs">· By {blog.authorName}</span>
+              <span className="text-t-muted text-xs">
+                {formatDate(blog.createdAt)}
+              </span>
+              <span className="text-t-muted text-xs">
+                · By {blog.author || "VyomEdge"}
+              </span>
+              {blog.readTime > 0 && (
+                <span className="text-t-muted text-xs">
+                  · {blog.readTime} min read
+                </span>
+              )}
             </div>
 
             {/* Title */}
@@ -96,16 +135,21 @@ export default function BlogDetail() {
               {blog.title}
             </h1>
 
-            {/* Meta description */}
-            {blog.meta?.description && (
-              <p className="text-t-secondary text-lg leading-relaxed mb-8">{blog.meta.description}</p>
+            {/* Excerpt / SEO description */}
+            {(blog.excerpt || blog.seoDescription) && (
+              <p className="text-t-secondary text-lg leading-relaxed mb-8">
+                {blog.excerpt || blog.seoDescription}
+              </p>
             )}
 
             {/* Tags */}
             {blog.tags?.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-8">
                 {blog.tags.map((t, i) => (
-                  <span key={i} className="text-xs px-3 py-1 rounded-full border border-t-border text-t-muted">
+                  <span
+                    key={i}
+                    className="text-xs px-3 py-1 rounded-full border border-t-border text-t-muted"
+                  >
                     #{t}
                   </span>
                 ))}
@@ -115,8 +159,8 @@ export default function BlogDetail() {
         </div>
       </div>
 
-      {/* Featured Image */}
-      {blog.featuredImage?.url && (
+      {/* Featured Image — plain string (base64 or URL) */}
+      {blog.featuredImage && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -124,8 +168,8 @@ export default function BlogDetail() {
           className="max-w-4xl mx-auto px-6 mb-12"
         >
           <img
-            src={blog.featuredImage.url}
-            alt={blog.featuredImage.altText || blog.title}
+            src={blog.featuredImage}
+            alt={blog.title}
             className="w-full h-64 md:h-96 object-cover rounded-2xl"
           />
         </motion.div>
@@ -138,21 +182,25 @@ export default function BlogDetail() {
         transition={{ delay: 0.3 }}
         className="max-w-3xl mx-auto px-6"
       >
-        {/* Blog body */}
+        {/* Blog body — schema field is `content` */}
         <div
           className="prose-content text-t-secondary leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: blog.description }}
+          dangerouslySetInnerHTML={{ __html: blog.content }}
         />
 
-        {/* FAQs */}
-        {blog.faq?.length > 0 && (
+        {/* FAQs — schema field is `faqs` (array of { question, answer }) */}
+        {blog.faqs?.length > 0 && (
           <div className="mt-16">
-            <h2 className="text-2xl font-black text-t-text mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-black text-t-text mb-6">
+              Frequently Asked Questions
+            </h2>
             <div className="space-y-4">
-              {blog.faq.map((f, i) => (
+              {blog.faqs.map((f, i) => (
                 <div key={i} className="glass rounded-2xl p-6">
                   <h3 className="text-t-text font-bold mb-2">{f.question}</h3>
-                  <p className="text-t-secondary text-sm leading-relaxed">{f.answer}</p>
+                  <p className="text-t-secondary text-sm leading-relaxed">
+                    {f.answer}
+                  </p>
                 </div>
               ))}
             </div>
@@ -163,9 +211,16 @@ export default function BlogDetail() {
         <div className="mt-16 glass rounded-3xl p-8 text-center relative overflow-hidden">
           <div className="absolute inset-0 opacity-5 brand-gradient" />
           <div className="relative z-10">
-            <h3 className="text-2xl font-black text-t-text mb-3">Need Help With Your Digital Growth?</h3>
-            <p className="text-t-secondary text-sm mb-6">Talk to our team. Free strategy session, no commitment.</p>
-            <Link to="/contact" className="relative inline-block px-8 py-3 rounded-xl text-white font-bold text-sm overflow-hidden">
+            <h3 className="text-2xl font-black text-t-text mb-3">
+              Need Help With Your Digital Growth?
+            </h3>
+            <p className="text-t-secondary text-sm mb-6">
+              Talk to our team. Free strategy session, no commitment.
+            </p>
+            <Link
+              to="/contact"
+              className="relative inline-block px-8 py-3 rounded-xl text-white font-bold text-sm overflow-hidden"
+            >
               <span className="absolute inset-0 brand-gradient" />
               <span className="relative z-10">Book Free Call →</span>
             </Link>
@@ -174,9 +229,14 @@ export default function BlogDetail() {
 
         {/* Back link */}
         <div className="mt-10 text-center">
-          <Link to="/resources" className="text-[#4CFFE7] text-sm hover:underline">← Back to all blogs</Link>
+          <Link
+            to="/resources"
+            className="text-[#4CFFE7] text-sm hover:underline"
+          >
+            ← Back to all blogs
+          </Link>
         </div>
       </motion.div>
     </div>
-  )
+  );
 }
