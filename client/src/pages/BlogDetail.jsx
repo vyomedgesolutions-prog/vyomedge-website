@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { getBlogById } from "../services/api";
 import SEO from "../components/SEO";
 
@@ -64,6 +65,18 @@ export default function BlogDetail() {
     );
 
   if (!blog) return null;
+
+  // ── Schema field mappings ──────────────────────────────────────────────────
+  // blog.content          → rich HTML body (was blog.description)
+  // blog.seoTitle         → SEO title    (falls back to blog.title)
+  // blog.seoDescription   → meta desc    (was blog.meta?.description)
+  // blog.seoKeywords      → meta keywords (was blog.tags?.join)
+  // blog.canonicalUrl     → canonical URL (was hardcoded /blog/${uid})
+  // blog.featuredImage    → plain string URL or base64 (was blog.featuredImage?.url)
+  // blog.category         → plain string  (was blog.category?.name)
+  // blog.faqs             → array of { question, answer } (was blog.faq)
+  // blog.author           → author name  (was blog.authorName)
+  // blog.readTime         → read time in minutes (auto-computed by schema)
 
   return (
     <div className="min-h-screen pb-20">
