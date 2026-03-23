@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
 import SchemaMarkup from '../components/SchemaMarkup'
 import { getPortfolio } from '../services/api'
-<SchemaMarkup type="portfolio" data={cases} />
 
 const STATIC_FILTERS = ['All', 'Full Ecosystem', 'SEO', 'Meta Ads', 'Web Dev', 'Google Ads']
 
@@ -55,10 +54,7 @@ function normalize(item) {
     color:       item.color       || '#7600C4',
     description: item.description || '',
     results:     Array.isArray(item.results) ? item.results : [],
-    metrics: {
-      da: item.metrics?.da ?? '–',
-      pa: item.metrics?.pa ?? '–',
-    },
+    metrics: { da: item.metrics?.da ?? '-', pa: item.metrics?.pa ?? '-' },
     _id: item._id,
   }
 }
@@ -92,7 +88,6 @@ export default function Portfolio() {
   useEffect(() => {
     getPortfolio()
       .then(data => {
-        console.log('Portfolio API response:', data)
         const items = data?.portfolio
         if (items && items.length > 0) {
           setCases(items.map(normalize))
@@ -121,10 +116,10 @@ export default function Portfolio() {
         canonical="/portfolio"
         ogImage="/og-portfolio.jpg"
       />
+      <SchemaMarkup type="portfolio" data={cases || []} />
 
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* Header */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
           <span className="text-sm font-semibold tracking-widest uppercase gradient-text">Proof of Work</span>
           <h1 className="text-5xl md:text-7xl font-black text-t-text mt-4 mb-6">
@@ -137,7 +132,6 @@ export default function Portfolio() {
 
         {error && <div className="text-center text-xs text-yellow-500/70 mb-6">{error}</div>}
 
-        {/* Filters */}
         <div className="flex flex-wrap gap-3 justify-center mb-12">
           {filters.map(f => (
             <button key={f} onClick={() => setActive(f)}
@@ -151,7 +145,6 @@ export default function Portfolio() {
           ))}
         </div>
 
-        {/* Grid */}
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => <CardSkeleton key={i} />)}
@@ -161,8 +154,7 @@ export default function Portfolio() {
             <AnimatePresence>
               {filtered.map((c, i) => (
                 <motion.div
-                  key={c._id || c.client}
-                  layout
+                  key={c._id || c.client} layout
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
@@ -182,7 +174,11 @@ export default function Portfolio() {
                         </div>
                         <h3 className="text-t-text font-bold text-lg group-hover:gradient-text transition-all">{c.client}</h3>
                       </div>
-                      {c.icon && c.icon.startsWith('http') ? (<img src={c.icon} alt={c.client} onError={e => e.target.style.display = 'none'} className="w-12 h-12 object-contain rounded-lg bg-white/10 p-1" />) : (<span className="text-3xl">{c.icon || '📁'}</span>)}
+                      {c.icon && c.icon.startsWith('http') ? (
+                        <img src={c.icon} alt={c.client} onError={e => e.target.style.display = 'none'} className="w-12 h-12 object-contain rounded-lg bg-white/10 p-1" />
+                      ) : (
+                        <span className="text-3xl">{c.icon || '📁'}</span>
+                      )}
                     </div>
                     <p className="text-t-muted text-sm mb-5 leading-relaxed line-clamp-2">{c.description}</p>
                     <div className="grid grid-cols-2 gap-3">
@@ -207,7 +203,6 @@ export default function Portfolio() {
           </motion.div>
         )}
 
-        {/* CTA */}
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-center mt-20 glass rounded-3xl p-12"
         >
@@ -220,7 +215,6 @@ export default function Portfolio() {
         </motion.div>
       </div>
 
-      {/* Modal */}
       <AnimatePresence>
         {selected && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -234,7 +228,11 @@ export default function Portfolio() {
               <button onClick={() => setSelected(null)}
                 className="absolute top-4 right-4 text-t-muted hover:text-t-text text-2xl leading-none">×</button>
               <div className="flex items-center gap-3 mb-6">
-                {selected.icon && selected.icon.startsWith('http') ? (<img src={selected.icon} alt={selected.client} onError={e => e.target.style.display = 'none'} className="w-14 h-14 object-contain rounded-xl bg-white/10 p-2" />) : (<span className="text-4xl">{selected.icon || '📁'}</span>)}
+                {selected.icon && selected.icon.startsWith('http') ? (
+                  <img src={selected.icon} alt={selected.client} onError={e => e.target.style.display = 'none'} className="w-14 h-14 object-contain rounded-xl bg-white/10 p-2" />
+                ) : (
+                  <span className="text-4xl">{selected.icon || '📁'}</span>
+                )}
                 <div>
                   <h3 className="text-t-text font-black text-2xl">{selected.client}</h3>
                   <div className="flex gap-2 mt-1 flex-wrap">
