@@ -1,0 +1,46 @@
+{
+  "name": "VyomEdge",
+  "description": "Full-stack digital marketing and IT services agency based in Bhopal, India. SEO, Meta Ads, Google Ads, Web Development, App Development and UI/UX Design.",
+  "url": "https://www.vyomedge.com",
+  "contact": {
+    "email": "info@vyomedge.com",
+    "phone": "+91-7974186754"
+  },
+  "location": {
+    "address": "FF-12, SRP Arcade, E-5 Arera Colony",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "country": "India",
+    "pincode": "462016"
+  },
+  "services": [
+    "SEO",
+    "Meta Ads",
+    "Google Ads",
+    "Social Media Management",
+    "Web Development",
+    "App Development",
+    "UI/UX Design",
+    "Graphic Design",
+    "IT Support"
+  ],
+  "llms_txt": "https://www.vyomedge.com/llms.txt",
+  "llms_full_txt": "https://www.vyomedge.com/llms-full.txt",
+  "sitemap": "https://www.vyomedge.com/sitemap.xml",
+  "pages": [
+    { "name": "Home",      "url": "https://www.vyomedge.com/" },
+    { "name": "Services",  "url": "https://www.vyomedge.com/services" },
+    { "name": "Portfolio", "url": "https://www.vyomedge.com/portfolio" },
+    { "name": "Resources", "url": "https://www.vyomedge.com/resources" },
+    { "name": "Tools",     "url": "https://www.vyomedge.com/tools" },
+    { "name": "About",     "url": "https://www.vyomedge.com/about" },
+    { "name": "Contact",   "url": "https://www.vyomedge.com/contact" }
+  ],
+  "social": {
+    "facebook":  "https://www.facebook.com/vyomedge/",
+    "instagram": "https://www.instagram.com/vyomedge_official/",
+    "linkedin":  "https://www.linkedin.com/company/vyom-edge/",
+    "twitter":   "https://x.com/VyomedgeS",
+    "pinterest": "https://www.pinterest.com/vyomedge/"
+  }
+}
