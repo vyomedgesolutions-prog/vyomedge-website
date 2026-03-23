@@ -7,14 +7,16 @@ import ScrollToHash from "./components/ScrollToHash";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-import Home from "./pages/Home"
-import Portfolio from "./pages/Portfolio"
-import Services from "./pages/Services"
-import Resources from "./pages/Resources"
-import Tools from "./pages/Tools"
-import About from "./pages/About"
-import Contact from "./pages/Contact"
-import BlogDetail from "./pages/BlogDetail"
+import Home from "./pages/Home";
+import Portfolio from "./pages/Portfolio";
+import Services from "./pages/Services";
+import Resources from "./pages/Resources";
+import Tools from "./pages/Tools";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import BlogDetail from "./pages/BlogDetail";
+import Legal from "./pages/Legal";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -36,7 +38,8 @@ function App() {
               <Route path="/tools" element={<Tools />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-
+              <Route path="/legal/:type" element={<Legal />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
 
