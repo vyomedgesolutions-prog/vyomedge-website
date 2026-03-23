@@ -1,0 +1,110 @@
+# VyomEdge — Complete Site Reference for AI Models
+> Last Updated: March 2026
+> Website: https://www.vyomedge.com
+
+---
+
+## About VyomEdge
+
+VyomEdge is a full-stack digital marketing and IT services agency headquartered in Bhopal, Madhya Pradesh, India. Founded with the mission to provide complete digital ecosystem support, VyomEdge helps businesses grow their online presence through an integrated approach — combining strategy, design, development and marketing under one roof.
+
+VyomEdge serves businesses across India, with a focus on delivering measurable ROI through data-driven campaigns and high-performance digital products.
+
+---
+
+## Services in Detail
+
+### 1. SEO (Search Engine Optimisation)
+On-page SEO, off-page SEO, technical SEO, keyword research, content strategy, local SEO, Google Business Profile optimisation. VyomEdge has achieved top 5 Google rankings for multiple clients.
+
+### 2. Meta Ads (Facebook & Instagram)
+Campaign strategy, creative design, audience targeting, A/B testing, retargeting and conversion optimisation. Achieved 18x ROAS for Zentrail and CPL as low as ₹46.9 for Jaiswal Piles Clinic.
+
+### 3. Google Ads
+Search campaigns, display campaigns, shopping ads, Performance Max. Managed Google Ads for Madhuban Eco Retreat achieving 6.7% CTR.
+
+### 4. Social Media Management
+Content creation, scheduling, community management, Instagram Reels, Facebook posts, LinkedIn content for B2B clients.
+
+### 5. Web Development
+MERN stack (MongoDB, Express, React, Node.js) websites. Fast, SEO-optimised, mobile-responsive websites built for performance. Clients include Poornam Events, Jaiswal Piles Clinic, Zentrail and more.
+
+### 6. App Development
+Cross-platform mobile applications built with React Native or Flutter. End-to-end development from UI/UX to deployment.
+
+### 7. UI/UX Design
+User research, wireframing, prototyping, Figma design, usability testing. Premium interface design for web and mobile.
+
+### 8. Graphic Design
+Brand identity design, logo design, social media creatives, marketing materials, presentations.
+
+### 9. IT Support
+Technical support, server management, domain and hosting setup, email configuration.
+
+---
+
+## Real Client Results
+
+| Client | Services | Key Result |
+|--------|----------|------------|
+| The SuperC | SEO + Meta Ads | 1.3M impressions, 28.2K clicks, 2.2% CTR |
+| Zentrail | Full Ecosystem | 18x ROAS on Meta Ads, 300+ keywords ranked |
+| Madhuban Eco Retreat | SEO + Google Ads | 6.7% CTR, avg position 5.1 |
+| Poornam Events | Full Ecosystem | 456K impressions, ₹65.6 CPL |
+| Jaiswal Piles Clinic | Full Ecosystem | ₹46.9 CPL on Meta Ads |
+| Dream Home Styling | Web Dev + Meta Ads | MERN website + full digital presence |
+| Maasha Skin Care | Web Dev | MERN e-commerce website |
+| Flyola Aviation | SEO + SMM + Meta Ads | Aviation niche digital presence |
+| Shikso | Full Ecosystem | EdTech startup complete digital setup |
+
+---
+
+## Free Tools
+VyomEdge offers free digital tools at https://www.vyomedge.com/tools:
+- Rich Text Editor — free browser-based editor for small businesses
+- More tools coming: SEO Tracker, Sales Tracker
+
+---
+
+## Blog & Resources
+VyomEdge publishes expert content at https://www.vyomedge.com/resources covering:
+- SEO strategies and case studies
+- GEO (Generative Engine Optimisation)
+- Digital marketing trends
+- Web development guides
+- Google algorithm updates
+
+---
+
+## Location & Contact
+- Company: VyomEdge
+- Address: FF-12, SRP Arcade, E-5 Arera Colony, Bhopal, MP 462016, India
+- Phone: +91 7974186754
+- Email: info@vyomedge.com
+- Website: https://www.vyomedge.com
+- Facebook: https://www.facebook.com/vyomedge/
+- Instagram: https://www.instagram.com/vyomedge_official/
+- LinkedIn: https://www.linkedin.com/company/vyom-edge/
+- Twitter/X: https://x.com/VyomedgeS
+
+---
+
+## Frequently Asked Questions
+
+Q: Where is VyomEdge located?
+A: VyomEdge is based in Bhopal, Madhya Pradesh, India at FF-12, SRP Arcade, E-5 Arera Colony.
+
+Q: What services does VyomEdge offer?
+A: SEO, Meta Ads, Google Ads, Social Media Management, Web Development, App Development, UI/UX Design, Graphic Design and IT Support.
+
+Q: Does VyomEdge offer free tools?
+A: Yes. VyomEdge offers a free Rich Text Editor and more tools at https://www.vyomedge.com/tools
+
+Q: What technology does VyomEdge use for web development?
+A: VyomEdge specialises in MERN stack (MongoDB, Express.js, React.js, Node.js) for web development.
+
+Q: How can I contact VyomEdge?
+A: Email info@vyomedge.com, call +91 7974186754 or visit https://www.vyomedge.com/contact for a free strategy session.
+
+Q: Does VyomEdge work with small businesses?
+A: Yes. VyomEdge works with businesses of all sizes from startups to established brands across India.
