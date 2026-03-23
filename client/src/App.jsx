@@ -7,6 +7,7 @@ import ScrollToHash from "./components/ScrollToHash"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 
+import NotFound from "./pages/NotFound"
 import Home from "./pages/Home"
 import Portfolio from "./pages/Portfolio"
 import Services from "./pages/Services"
@@ -42,6 +43,7 @@ function App() {
               <Route path="/tools" element={<Tools />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<NotFound />} />
 
             </Routes>
 
