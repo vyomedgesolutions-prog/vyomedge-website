@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
 import SchemaMarkup from '../components/SchemaMarkup'
+import SchemaMarkup from '../components/SchemaMarkup'
 // inside return:
 <SchemaMarkup type="home" />
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
+import SchemaMarkup from '../components/SchemaMarkup'
 import { getPortfolio } from '../services/api'
 <SchemaMarkup type="portfolio" data={cases} />
 
