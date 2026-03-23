@@ -1,3 +1,4 @@
+import SchemaMarkup from '../components/SchemaMarkup'
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
