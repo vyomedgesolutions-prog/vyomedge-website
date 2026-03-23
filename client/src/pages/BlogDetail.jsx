@@ -27,9 +27,9 @@ function Skeleton() {
 
 export default function BlogDetail() {
   const { slug } = useParams();
-  const [blog, setBlog] = useState(null);
+  const [blog, setBlog]       = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError]     = useState(null);
 
   useEffect(() => {
     setLoading(true);
@@ -46,9 +46,11 @@ export default function BlogDetail() {
 
   if (error) return (
     <div className="min-h-screen flex flex-col items-center justify-center pt-20">
-      <SEO title="Blog Not Found"
+      <SEO
+        title="Blog Not Found"
         description="The blog post you're looking for could not be found."
-        canonical={`/blog/${slug}`} />
+        canonical={`/blog/${slug}`}
+      />
       <div className="text-6xl mb-4">😕</div>
       <p className="text-t-secondary mb-6">{error}</p>
       <Link to="/resources" className="text-[#4CFFE7] hover:underline">← Back to Resources</Link>
@@ -59,6 +61,8 @@ export default function BlogDetail() {
 
   return (
     <div className="min-h-screen pb-20">
+
+      {/* ── SEO + OG + Twitter Card ── */}
       <SEO
         title={blog.seoTitle || blog.title}
         description={blog.seoDescription || blog.excerpt || `Read ${blog.title} on VyomEdge blog.`}
@@ -66,6 +70,14 @@ export default function BlogDetail() {
         canonical={blog.canonicalUrl || `/blog/${slug}`}
         ogImage={blog.featuredImage || "/og-blog.jpg"}
         ogType="article"
+        ogImageAlt={blog.title}
+        article={{
+          publishedTime: blog.createdAt,
+          modifiedTime:  blog.updatedAt,
+          author:        blog.author || "VyomEdge",
+          section:       blog.category,
+          tags:          blog.tags,
+        }}
       />
 
       {/* ── Dynamic Schema Markup ── */}
@@ -143,7 +155,7 @@ export default function BlogDetail() {
         <div className="prose-content text-t-secondary leading-relaxed"
           dangerouslySetInnerHTML={{ __html: blog.content }} />
 
-        {/* FAQs with accordion */}
+        {/* FAQs accordion */}
         {blog.faqs?.length > 0 && (
           <div className="mt-16">
             <h2 className="text-2xl font-black text-t-text mb-6">
