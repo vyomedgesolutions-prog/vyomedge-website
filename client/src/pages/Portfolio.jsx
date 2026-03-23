@@ -180,7 +180,7 @@ export default function Portfolio() {
                         </div>
                         <h3 className="text-t-text font-bold text-lg group-hover:gradient-text transition-all">{c.client}</h3>
                       </div>
-                      <span className="text-3xl">{c.icon}</span>
+                      {c.icon && c.icon.startsWith('http') ? (<img src={c.icon} alt={c.client} onError={e => e.target.style.display = 'none'} className="w-12 h-12 object-contain rounded-lg bg-white/10 p-1" />) : (<span className="text-3xl">{c.icon || '📁'}</span>)}
                     </div>
                     <p className="text-t-muted text-sm mb-5 leading-relaxed line-clamp-2">{c.description}</p>
                     <div className="grid grid-cols-2 gap-3">
@@ -232,7 +232,7 @@ export default function Portfolio() {
               <button onClick={() => setSelected(null)}
                 className="absolute top-4 right-4 text-t-muted hover:text-t-text text-2xl leading-none">×</button>
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-4xl">{selected.icon}</span>
+                {selected.icon && selected.icon.startsWith('http') ? (<img src={selected.icon} alt={selected.client} onError={e => e.target.style.display = 'none'} className="w-14 h-14 object-contain rounded-xl bg-white/10 p-2" />) : (<span className="text-4xl">{selected.icon || '📁'}</span>)}
                 <div>
                   <h3 className="text-t-text font-black text-2xl">{selected.client}</h3>
                   <div className="flex gap-2 mt-1 flex-wrap">
