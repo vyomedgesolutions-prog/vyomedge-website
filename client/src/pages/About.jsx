@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
+<SchemaMarkup type="about" />
 
 const timeline = [
   { year: '2021', title: 'VyomEdge Founded', desc: 'Started as a small web development studio in Bhopal with a vision to be a full-stack digital partner for Indian businesses.' },

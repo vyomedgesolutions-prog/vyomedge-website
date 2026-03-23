@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
 import { getPortfolio } from '../services/api'
+<SchemaMarkup type="portfolio" data={cases} />
 
 const STATIC_FILTERS = ['All', 'Full Ecosystem', 'SEO', 'Meta Ads', 'Web Dev', 'Google Ads']
 

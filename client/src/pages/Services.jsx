@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
 import SEO from "../components/SEO"
+<SchemaMarkup type="services" />
 
 const services = [
   { id:'seo',icon:'🔍',title:'Search Engine Optimization',short:'SEO',tagline:'Rank higher. Get found. Grow organically.',

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { submitInquiry } from '../services/api'
 import SEO from '../components/SEO'
+<SchemaMarkup type="contact" />
 
 const steps = [
   {

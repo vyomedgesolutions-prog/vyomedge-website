@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
+<SchemaMarkup type="tools" />
 
 const tools = [
   {

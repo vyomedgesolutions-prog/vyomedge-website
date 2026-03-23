@@ -30,6 +30,13 @@ const socials = [
   { name: "Twitter", url: "https://x.com/VyomedgeS" },
 ]
 
+const legal = [
+  { name: "Privacy Policy", path: "/legal/privacy-policy" },
+  { name: "Terms & Conditions", path: "/legal/terms" },
+  { name: "Disclaimer", path: "/legal/disclaimer" },
+  { name: "Cookie Policy", path: "/legal/cookies" },
+]
+
 export default function Footer() {
   return (
     <footer className="border-t border-t-border bg-t-bg pt-20 pb-8 transition-colors duration-300">
@@ -39,7 +46,6 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="md:col-span-2">
-
             <Link to="/" className="flex items-center gap-2 mb-4 w-fit">
               <img
                 src="/logo.png"
@@ -48,7 +54,6 @@ export default function Footer() {
                 className="h-10 w-auto"
                 onError={(e) => { e.target.style.display = "none" }}
               />
-
               <span className="text-t-text font-black text-xl">
                 Vyom<span className="gradient-text">Edge</span>
               </span>
@@ -74,94 +79,77 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-
           </div>
 
           {/* Services */}
           <div>
-
-            <h4 className="text-t-text font-semibold text-sm mb-4">
-              Services
-            </h4>
-
+            <h4 className="text-t-text font-semibold text-sm mb-4">Services</h4>
             <ul className="space-y-2">
               {services.map((s) => (
                 <li key={s.name}>
-                  <Link
-                    to={s.path}
-                    className="text-t-muted text-sm hover:text-[#4CFFE7] transition-colors"
-                  >
+                  <Link to={s.path}
+                    className="text-t-muted text-sm hover:text-[#4CFFE7] transition-colors">
                     {s.name}
                   </Link>
                 </li>
               ))}
             </ul>
-
           </div>
 
           {/* Company */}
           <div>
-
-            <h4 className="text-t-text font-semibold text-sm mb-4">
-              Company
-            </h4>
-
+            <h4 className="text-t-text font-semibold text-sm mb-4">Company</h4>
             <ul className="space-y-2 mb-8">
               {company.map((c) => (
                 <li key={c.name}>
-                  <Link
-                    to={c.path}
-                    className="text-t-muted text-sm hover:text-[#4CFFE7] transition-colors"
-                  >
+                  <Link to={c.path}
+                    className="text-t-muted text-sm hover:text-[#4CFFE7] transition-colors">
                     {c.name}
                   </Link>
                 </li>
               ))}
             </ul>
 
-            <h4 className="text-t-text font-semibold text-sm mb-3">
-              Contact
-            </h4>
-
+            <h4 className="text-t-text font-semibold text-sm mb-3">Contact</h4>
             <div className="space-y-2 text-sm text-t-muted">
-
               <p>FF-12, SRP Arcade, E-5 Arera Colony</p>
               <p>Bhopal, MP 462016, India</p>
-
-              <a
-                href="tel:+917974186754"
-                className="block hover:text-[#4CFFE7] transition-colors"
-              >
+              <a href="tel:+917974186754"
+                className="block hover:text-[#4CFFE7] transition-colors">
                 +91 79741 86754
               </a>
-
-              <a
-                href="mailto:info@vyomedge.com"
-                className="block hover:text-[#4CFFE7] transition-colors"
-              >
+              <a href="mailto:info@vyomedge.com"
+                className="block hover:text-[#4CFFE7] transition-colors">
                 info@vyomedge.com
               </a>
-
-              <a
-                href="https://www.vyomedge.com"
-                className="block hover:text-[#4CFFE7] transition-colors"
-              >
+              <a href="https://www.vyomedge.com"
+                className="block hover:text-[#4CFFE7] transition-colors">
                 vyomedge.com
               </a>
-
             </div>
-
           </div>
 
         </div>
 
         {/* Bottom bar */}
-
         <div className="border-t border-t-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
 
           <p className="text-t-faint text-xs">
             &copy; {year} VyomEdge. All rights reserved.
           </p>
+
+          {/* Legal Links */}
+          <div className="flex flex-wrap justify-center gap-4">
+            {legal.map((l) => (
+              <Link
+                key={l.name}
+                to={l.path}
+                className="text-t-faint text-xs hover:text-[#4CFFE7] transition-colors"
+              >
+                {l.name}
+              </Link>
+            ))}
+          </div>
 
           <p className="text-t-faint text-xs">
             From Bhopal to the digital universe — crafted by VyomEdge.

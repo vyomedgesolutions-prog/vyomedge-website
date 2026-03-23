@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { getBlogs } from "../services/api";
 import SEO from "../components/SEO";
+<SchemaMarkup type="resources" />
 
 const tabs = ["Case Studies", "Blog", "News"];
 
