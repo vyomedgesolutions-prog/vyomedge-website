@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
 import SchemaMarkup from '../components/SchemaMarkup'
 // inside return:
-<SchemaMarkup type="home" />
 
 // ── Animated Counter ──────────────────────────────────────────
 function Counter({ target, suffix = '', prefix = '' }) {
@@ -114,6 +113,8 @@ export default function Home() {
         keywords="digital marketing agency Bhopal, SEO company Bhopal, web development Bhopal, Meta Ads agency, social media marketing"
         canonical="/"
         ogImage="/og-home.jpg"
+      />
+      <SchemaMarkup type="home"
       />
 
       {/* ── HERO ── */}

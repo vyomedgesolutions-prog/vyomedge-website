@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { getBlogs } from "../services/api";
 import SEO from "../components/SEO";
-<SchemaMarkup type="resources" />
 
 const tabs = ["Case Studies", "Blog", "News"];
 
@@ -135,6 +134,8 @@ export default function Resources() {
         description="Learn digital marketing with VyomEdge's expert resources. Free SEO tips, social media strategies, web development guides & marketing insights for growth."
         keywords="digital marketing blog, SEO tips, marketing resources, case studies, digital marketing guides Bhopal"
         canonical="/resources"
+      />
+      <SchemaMarkup type="resources"
         ogImage="/og-resources.jpg"
       />
 

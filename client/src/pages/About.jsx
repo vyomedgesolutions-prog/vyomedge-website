@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
 import SchemaMarkup from '../components/SchemaMarkup'
-<SchemaMarkup type="about" />
 
 const timeline = [
   { year: '2021', title: 'VyomEdge Founded', desc: 'Started as a small web development studio in Bhopal with a vision to be a full-stack digital partner for Indian businesses.' },
@@ -47,6 +46,8 @@ export default function About() {
         description="Meet the team behind VyomEdge - Bhopal's trusted digital marketing agency. Learn about our mission, values & commitment to helping businesses grow online."
         keywords="about VyomEdge, digital marketing agency Bhopal, digital marketing experts, VyomEdge team, Bhopal marketing company"
         canonical="/about"
+      />
+      <SchemaMarkup type="about"
         ogImage="/og-about.jpg"
       />
 

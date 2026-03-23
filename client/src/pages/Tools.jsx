@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
 import SchemaMarkup from '../components/SchemaMarkup'
-<SchemaMarkup type="tools" />
 
 const tools = [
   {
@@ -75,6 +74,8 @@ export default function Tools() {
         description="Access free digital marketing tools by VyomEdge. Use our SEO analyzers, keyword tools & marketing calculators to boost your online presence. No signup required."
         keywords="free SEO tools, digital marketing tools, keyword tracker, website audit tool, Meta Ads analyzer, free marketing tools"
         canonical="/tools"
+      />
+      <SchemaMarkup type="tools"
         ogImage="/og-tools.jpg"
       />
 
