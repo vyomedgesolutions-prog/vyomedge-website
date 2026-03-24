@@ -11,10 +11,8 @@
     { "source": "/cookies", "destination": "/legal/cookies", "permanent": true }
   ],
   "rewrites": [
-    {
-      "source": "/sitemap.xml",
-      "destination": "https://vyomedge-backend.onrender.com/sitemap.xml"
-    },
+    { "source": "/sitemap.xml", "destination": "https://vyomedge-backend.onrender.com/sitemap.xml" },
+    { "source": "/crawl", "destination": "https://vyomedge-backend.onrender.com/crawl" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
